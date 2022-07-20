@@ -112,31 +112,62 @@ st.sidebar.markdown(
 
 # def home():
 plt.style.use('seaborn')
+
+
+def header1():
+    st.header("Sublead Signifikan Mempengaruhi Turunnya Produksi Batu Bara")
+def header2():
+    st.header("Sublead Kurang Signifikan Mempengaruhi Turunnya Produksi Batu Bara")
+def header3():
+    st.header("Sublead Tidak Signifikan Mempengaruhi Turunnya Produksi")
 # sublead = st.radio("Filter Kategori Sublead",('Sublead Signifikan','Sublead Kurang Signifikan','Sublead Tidak Signifikan'))
-left_col, right_col = st.columns(2)
-with left_col:
-    st.markdown("### Lag Indicator CG")
-with right_col:
-    st.markdown("### Lag Indicator OB")
-# kurang_signifikan = st.radio('Sublead Kurang Signifikan')
+def indicator():
+    left_col, right_col = st.columns(2)
+    with left_col:
+        st.subheader("Lag Indicator CG")
+    with right_col:
+        st.subheader("Lag Indicator OB")
+        
 #Signifikan
 
-
-
 if sublead == 'Sublead Signifikan' :
+    # with st.spinner('Menampilkan visualisasi ...'):
+    #     time.sleep(5)
+    
+    
     #CG
+    # st.header("Sublead Signifikan Mempengaruhi Turunnya Produksi")
+    header1()
+    indicator()
     st.sidebar.markdown(
     '\n1. Sublead Signifikan bermakna korelasi negatif tinggi dan sublead masuk kategori signifikan dalam mempengaruhi naik/turunnya produksi')
     fitur_cg1 = result_cg1.columns.values.tolist()
     fitur_cg1 = fitur_cg1[:4]
+    df_fitur_cg1 = pd.DataFrame(fitur_cg1, columns=['fitur_cg1'])
+    df_fitur_cg1
+    # for i in len(df_fitur_cg1):
+    #     print('o')
+    # if st.button('Say hello'):
+    #     st.write(fitur_cg1)
+    # df_fitur_cg1
     # list_fitur_cg1 = fitur_cg1
     count=1
     # fig_cg = plt.figure(figsize=(10, 17))
     fig_cg = plt.figure(figsize=(10, 17))
+    
+    # nama_sub1 = df_fitur_cg1[df_fitur_cg1['fitur_cg1'].isin(sublead1)]
+    # st.write(nama_sub1)
     for fitur_cg in fitur_cg1:
         # px.scatter(result_cg1, x=result_cg1[fitur_cg], y=result_cg1.Produksi, color=result_cg1[fitur_cg])
         plt.subplot(5,1,count)
+        plt.title(fitur_cg1, fontsize=25, color='red')
+        # st.subheader(df_fitur_cg1)
+        # plt.title("hu", fontsize=25)
+        # st.write('\n\n\n')
         sns.scatterplot(result_cg1[fitur_cg],result_cg1["Produksi"],cmap="Blues", alpha=0.6, edgecolor='red', linewidth=1)
+        # mplcursors.cursor(sc, hover=True)
+        # plt.title("e", fontsize=20)
+        
         count+=1
     #OB
     fitur_ob1 = result_ob1.columns.values.tolist()
@@ -166,7 +197,7 @@ if sublead == 'Sublead Signifikan' :
 
     # Set title
     figg.update_layout(
-        title_text="Sublead UA CG"
+        title_text="Detail Timeseries Kejadian Sublead Per Bulan - CG"
     )
 
     # Add range slider
@@ -207,7 +238,7 @@ if sublead == 'Sublead Signifikan' :
 
     # Set title
     figg.update_layout(
-        title_text="Sublead UA OB"
+        title_text="Detail Timeseries Kejadian Sublead Per Bulan - OB"
     )
 
     # Add range slider
@@ -241,6 +272,8 @@ if sublead == 'Sublead Signifikan' :
 
 elif sublead == 'Sublead Kurang Signifikan':
     #Kurang Signifikan
+    header2()
+    indicator()
     #CG
     st.sidebar.markdown(
     '\n2. Sublead Kurang Signifikan bermakna korelasi positif tinggi dan sublead masuk kategori signifikan dalam mempengaruhi naik/turunnya produksi.'
@@ -359,7 +392,9 @@ elif sublead == 'Sublead Kurang Signifikan':
     st.plotly_chart(figg, use_container_width=True)
 
 elif sublead == 'Sublead Tidak Signifikan':
-    #Kurang Signifikan
+    #Tidak Signifikan
+    header3()
+    indicator()
     #CG
     st.sidebar.markdown(
     '\n3. Sublead Tidak Signifikan bermakna korelasi negatif rendah dan sublead masuk kategori tidak signifikan dalam mempengaruhi turunnya produksi')
@@ -472,129 +507,3 @@ elif sublead == 'Sublead Tidak Signifikan':
 
     # with containers:
     st.plotly_chart(figg, use_container_width=True)
-
-
-
-
-
-     
-
-containers = st.container()
-# Rincian Sublead perbulan - CG
-fitur = result_multi_cg.columns.values.tolist()
-fitur = fitur[1:29]
-df_fitur = pd.DataFrame(fitur, columns=['fitur'])
-
-with st.expander("Filter Sublead :"):
-
-    filter = st.sidebar.multiselect(
-        "Pilih Sublead CG : ",
-        options=df_fitur["fitur"].unique()
-        )
-
-    df_filter = df_fitur.query(
-        "fitur == @filter"
-    )
-
-    list_filter = df_filter['fitur'].tolist()
-
-# Create figure
-figg = go.Figure()
-for idx, fitur_cg in enumerate(list_filter) :  
-    figg.add_trace(
-        go.Scatter(x=list(result_multi_cg['date']), y=list(result_multi_cg[fitur_cg]),
-                   name=fitur_cg ))
-
-# Set title
-figg.update_layout(
-    title_text="Sublead UA CG"
-)
-
-# Add range slider
-figg.update_layout(
-    xaxis=dict(
-        rangeselector=dict( 
-            buttons=list([
-                dict(count=1,
-                     label="1m",
-                     step="month",
-                     stepmode="backward"),
-                dict(count=6,
-                     label="6m",
-                     step="month",
-                     stepmode="backward"),
-                dict(count=1,
-                     label="YTD",
-                     step="year",
-                     stepmode="todate"),
-            ])
-        ),
-        rangeslider=dict(
-            visible=True
-        )
-        # type="date"
-    )
-)
-
-with containers:
-    with st.expander("Hasil CG :"):
-        st.plotly_chart(figg, use_container_width=True)
-
-# Rincian Sublead perbulan - OB
-fitur = result_multi_ob.columns.values.tolist()
-fitur = fitur[1:29]
-df_fitur = pd.DataFrame(fitur, columns=['fitur'])
-
-with st.expander("Filter Sublead :"):
-    filter = st.sidebar.multiselect(
-        "Pilih Sublead OB : ",
-        options=df_fitur["fitur"].unique()
-        )
-
-    df_filter = df_fitur.query(
-        "fitur == @filter"
-    )
-
-    list_filter = df_filter['fitur'].tolist()
-
-# Create figure
-figg = go.Figure()
-for idx, fitur_ob in enumerate(list_filter) :  
-    figg.add_trace(
-        go.Scatter(x=list(result_multi_ob['date']), y=list(result_multi_ob[fitur_ob]),
-                   name=fitur_ob ))
-
-# Set title
-figg.update_layout(
-    title_text="Sublead UA OB"
-)
-
-# Add range slider
-figg.update_layout(
-    xaxis=dict(
-        rangeselector=dict( 
-            buttons=list([
-                dict(count=1,
-                     label="1m",
-                     step="month",
-                     stepmode="backward"),
-                dict(count=6,
-                     label="6m",
-                     step="month",
-                     stepmode="backward"),
-                dict(count=1,
-                     label="YTD",
-                     step="year",
-                     stepmode="todate"),
-            ])
-        ),
-        rangeslider=dict(
-            visible=True
-        )
-        # type="date"
-    )
-)
-
-with containers:
-    with st.expander("Hasil OB :"):
-        st.plotly_chart(figg, use_container_width=True)
