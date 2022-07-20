@@ -143,8 +143,8 @@ if sublead == 'Sublead Signifikan' :
     '\n1. Sublead Signifikan bermakna korelasi negatif tinggi dan sublead masuk kategori signifikan dalam mempengaruhi naik/turunnya produksi')
     fitur_cg1 = result_cg1.columns.values.tolist()
     fitur_cg1 = fitur_cg1[:4]
-    df_fitur_cg1 = pd.DataFrame(fitur_cg1, columns=['fitur_cg1'])
-    df_fitur_cg1
+    # df_fitur_cg1 = pd.DataFrame(fitur_cg1, columns=['fitur_cg1'])
+    # df_fitur_cg1
     # for i in len(df_fitur_cg1):
     #     print('o')
     # if st.button('Say hello'):
@@ -160,7 +160,7 @@ if sublead == 'Sublead Signifikan' :
     for fitur_cg in fitur_cg1:
         # px.scatter(result_cg1, x=result_cg1[fitur_cg], y=result_cg1.Produksi, color=result_cg1[fitur_cg])
         plt.subplot(5,1,count)
-        plt.title(fitur_cg1, fontsize=25, color='red')
+        # plt.title(fitur_cg1, fontsize=25, color='red')
         # st.subheader(df_fitur_cg1)
         # plt.title("hu", fontsize=25)
         # st.write('\n\n\n')
