@@ -93,19 +93,18 @@ result_multi_ob = pd.DataFrame(data8)
 # st.write(df_ob)
 image = Image.open('logo.png')
 # containers = st.
-st.sidebar.image(image, width=200)
+st.image(image, width=200)
 
 #Judul
-# st.title("Sistem Pendukung Keputusan Perencanaan Produksi Batu Bara")
-# st.header("Sistem Pendukung Keputusan")
+st.title("Sistem Pendukung Keputusan untuk Menganalisis Penyebab Tidak Tercapainya Target Produksi Batu Bara")
 
 # def st.sidebar.subheader('Pilih Kategori')
 # sublead
-sublead = st.sidebar.selectbox(
+sublead = st.selectbox(
     ' Pilih Kategori',
     ('Sublead Signifikan','Sublead Kurang Signifikan','Sublead Tidak Signifikan')
 )
-st.sidebar.markdown(
+st.markdown(
     'Keterangan :\n')
 # st.sidebar.title("Filter")
 # options = st.sidebar.radio('Menu', options=['Home', 'Distribusi Data'])
@@ -127,47 +126,24 @@ def indicator():
         st.subheader("Lag Indicator CG")
     with right_col:
         st.subheader("Lag Indicator OB")
-        
+
+#  =====================        
 #Signifikan
 
 if sublead == 'Sublead Signifikan' :
-    # with st.spinner('Menampilkan visualisasi ...'):
-    #     time.sleep(5)
-    
     
     #CG
-    # st.header("Sublead Signifikan Mempengaruhi Turunnya Produksi")
     header1()
     indicator()
-    st.sidebar.markdown(
-    '\n1. Sublead Signifikan bermakna korelasi negatif tinggi dan sublead masuk kategori signifikan dalam mempengaruhi naik/turunnya produksi')
+    
     fitur_cg1 = result_cg1.columns.values.tolist()
     fitur_cg1 = fitur_cg1[:4]
-    # df_fitur_cg1 = pd.DataFrame(fitur_cg1, columns=['fitur_cg1'])
-    # df_fitur_cg1
-    # for i in len(df_fitur_cg1):
-    #     print('o')
-    # if st.button('Say hello'):
-    #     st.write(fitur_cg1)
-    # df_fitur_cg1
-    # list_fitur_cg1 = fitur_cg1
     count=1
-    # fig_cg = plt.figure(figsize=(10, 17))
     fig_cg = plt.figure(figsize=(10, 17))
     
-    # nama_sub1 = df_fitur_cg1[df_fitur_cg1['fitur_cg1'].isin(sublead1)]
-    # st.write(nama_sub1)
     for fitur_cg in fitur_cg1:
-        # px.scatter(result_cg1, x=result_cg1[fitur_cg], y=result_cg1.Produksi, color=result_cg1[fitur_cg])
         plt.subplot(5,1,count)
-        # plt.title(fitur_cg1, fontsize=25, color='red')
-        # st.subheader(df_fitur_cg1)
-        # plt.title("hu", fontsize=25)
-        # st.write('\n\n\n')
         sns.scatterplot(result_cg1[fitur_cg],result_cg1["Produksi"],cmap="Blues", alpha=0.6, edgecolor='red', linewidth=1)
-        # mplcursors.cursor(sc, hover=True)
-        # plt.title("e", fontsize=20)
-        
         count+=1
     #OB
     fitur_ob1 = result_ob1.columns.values.tolist()
@@ -187,8 +163,11 @@ if sublead == 'Sublead Signifikan' :
             st.pyplot(fig_cg)
         with col2:
             st.pyplot(fig_ob)
-
-    # Create figure CG3
+    # Keterangan
+    st.markdown(
+    '\n1. Sublead Signifikan bermakna korelasi negatif tinggi dan sublead masuk kategori signifikan dalam mempengaruhi naik/turunnya produksi')
+    
+    # Timeseries Kejadian Sublead
     figg = go.Figure()
     for idx, fitur_cg in enumerate(fitur_cg1) :  
         figg.add_trace(
@@ -267,17 +246,17 @@ if sublead == 'Sublead Signifikan' :
         )
     )
 
-    # with containers:
     st.plotly_chart(figg, use_container_width=True)
+
+#  =====================        
+# Sublead Kurang Signifikan
 
 elif sublead == 'Sublead Kurang Signifikan':
     #Kurang Signifikan
     header2()
     indicator()
     #CG
-    st.sidebar.markdown(
-    '\n2. Sublead Kurang Signifikan bermakna korelasi positif tinggi dan sublead masuk kategori signifikan dalam mempengaruhi naik/turunnya produksi.'
-    '\n   Dari kategori ini ditemukan keanehan bahwa tidak mungkin ada sublead yang berkorelasi positif (semakin lama terjadinya sublead, maka semakin tinggi nilai produksi)')
+    
     fitur_cg2 = result_cg2.columns.values.tolist()
     fitur_cg2 = fitur_cg2[:4]
     # list_fitur_cg2 = fitur_cg2
@@ -306,6 +285,10 @@ elif sublead == 'Sublead Kurang Signifikan':
         with col4:
             st.pyplot(fig_ob2)
     
+    # Keterangan
+    st.markdown(
+    '\n2. Sublead Kurang Signifikan bermakna korelasi positif tinggi dan sublead masuk kategori signifikan dalam mempengaruhi naik/turunnya produksi.'
+    '\n   Dari kategori ini ditemukan keanehan bahwa tidak mungkin ada sublead yang berkorelasi positif (semakin lama terjadinya sublead, maka semakin tinggi nilai produksi)')
     # Create figure CG3
     # col1, col2 = st.columns(2)
     figg = go.Figure()
@@ -391,13 +374,16 @@ elif sublead == 'Sublead Kurang Signifikan':
     # with col2:
     st.plotly_chart(figg, use_container_width=True)
 
+#  =====================        
+# Sublead Tidak Signifikan
+
+
 elif sublead == 'Sublead Tidak Signifikan':
     #Tidak Signifikan
     header3()
     indicator()
     #CG
-    st.sidebar.markdown(
-    '\n3. Sublead Tidak Signifikan bermakna korelasi negatif rendah dan sublead masuk kategori tidak signifikan dalam mempengaruhi turunnya produksi')
+    
     fitur_cg3 = result_cg3.columns.values.tolist()
     fitur_cg3 = fitur_cg3[:1]
     count=1
@@ -426,6 +412,9 @@ elif sublead == 'Sublead Tidak Signifikan':
         with col6:
             st.pyplot(fig_ob3)
 
+    # Keterangan
+    st.markdown(
+    '\n3. Sublead Tidak Signifikan bermakna korelasi negatif rendah dan sublead masuk kategori tidak signifikan dalam mempengaruhi turunnya produksi')
     # Create figure CG3
     figg = go.Figure()
     for idx, fitur_cg in enumerate(fitur_cg3) :  
