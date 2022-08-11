@@ -258,7 +258,7 @@ elif sublead == 'Sublead Kurang Signifikan':
     #CG
     
     fitur_cg2 = result_cg2.columns.values.tolist()
-    fitur_cg2 = fitur_cg2[:4]
+    fitur_cg2 = fitur_cg2[:5]
     # list_fitur_cg2 = fitur_cg2
     count=1
     fig_cg2 = plt.figure(figsize=(10, 17))
@@ -268,7 +268,7 @@ elif sublead == 'Sublead Kurang Signifikan':
         count+=1        
     #OB
     fitur_ob2 = result_ob2.columns.values.tolist()
-    fitur_ob2 = fitur_ob2[:3]
+    fitur_ob2 = fitur_ob2[:6]
     count=1
     fig_ob2 = plt.figure(figsize=(10, 20))
     for fitur_ob in fitur_ob2:
