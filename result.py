@@ -104,8 +104,8 @@ sublead = st.selectbox(
     ' Pilih Kategori',
     ('Sublead Signifikan','Sublead Kurang Signifikan','Sublead Tidak Signifikan')
 )
-st.markdown(
-    'Keterangan :\n')
+# st.markdown(
+#     'Keterangan :\n')
 # st.sidebar.title("Filter")
 # options = st.sidebar.radio('Menu', options=['Home', 'Distribusi Data'])
 
@@ -165,7 +165,7 @@ if sublead == 'Sublead Signifikan' :
             st.pyplot(fig_ob)
     # Keterangan
     st.markdown(
-    '\n1. Sublead Signifikan bermakna korelasi negatif tinggi dan sublead masuk kategori signifikan dalam mempengaruhi naik/turunnya produksi')
+    '\n Sublead Signifikan bermakna korelasi negatif tinggi dan sublead masuk kategori signifikan dalam mempengaruhi naik/turunnya produksi')
     
     # Timeseries Kejadian Sublead
     figg = go.Figure()
@@ -287,7 +287,7 @@ elif sublead == 'Sublead Kurang Signifikan':
     
     # Keterangan
     st.markdown(
-    '\n2. Sublead Kurang Signifikan bermakna korelasi positif tinggi dan sublead masuk kategori signifikan dalam mempengaruhi naik/turunnya produksi.'
+    '\n Sublead Kurang Signifikan bermakna korelasi positif tinggi dan sublead masuk kategori signifikan dalam mempengaruhi naik/turunnya produksi.'
     '\n   Dari kategori ini ditemukan keanehan bahwa tidak mungkin ada sublead yang berkorelasi positif (semakin lama terjadinya sublead, maka semakin tinggi nilai produksi)')
     # Create figure CG3
     # col1, col2 = st.columns(2)
@@ -414,7 +414,7 @@ elif sublead == 'Sublead Tidak Signifikan':
 
     # Keterangan
     st.markdown(
-    '\n3. Sublead Tidak Signifikan bermakna korelasi negatif rendah dan sublead masuk kategori tidak signifikan dalam mempengaruhi turunnya produksi')
+    '\n Sublead Tidak Signifikan bermakna korelasi negatif rendah dan sublead masuk kategori tidak signifikan dalam mempengaruhi turunnya produksi')
     # Create figure CG3
     figg = go.Figure()
     for idx, fitur_cg in enumerate(fitur_cg3) :  
