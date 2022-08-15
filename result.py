@@ -91,7 +91,7 @@ data8 = result8.data()
 result_multi_ob = pd.DataFrame(data8)
 
 # st.write(df_ob)
-image = Image.open('logo.png')
+# image = Image.open('logo.png')
 # containers = st.
 st.image(image, width=200)
 
