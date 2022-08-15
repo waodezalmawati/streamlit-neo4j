@@ -93,7 +93,7 @@ result_multi_ob = pd.DataFrame(data8)
 # st.write(df_ob)
 # image = Image.open('logo.png')
 # containers = st.
-st.image(image, width=200)
+# st.image(image, width=200)
 
 #Judul
 st.title("Sistem Pendukung Keputusan untuk Menganalisis Penyebab Tidak Tercapainya Target Produksi Batu Bara")
