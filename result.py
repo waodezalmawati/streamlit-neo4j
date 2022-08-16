@@ -69,7 +69,7 @@ q7 = """
 match (n:Multiple_CG) return n.date as date,	n.Bad_Visibility as Bad_Visibility,	n.Blasting as Blasting,	n.Customer_Problem as Customer_Problem,	n.Equipment_Travel as Equipment_Travel,	n.External_Issues as External_Issues, 
 	n.Fasting as Fasting,	n.Friday_Praying as Friday_Praying,	n.Front_And_Disposal_Repair as Front_And_Disposal_Repair,	n.Hazard as Hazard,	n.Holiday as Holiday,	n.Internal_Problem as Internal_Problem, 
     	n.Meal_And_Rest as Meal_And_Rest,	n.No_Hauler_Or_Truck as No_Hauler_or_Truck,	n.No_Material as No_Material,	n.No_Operator_EXC as No_Operator_EXC, 	n.No_Work_Location as No_Work_Location, n.Praying as Praying, 
-        	n.Rain as Rain,	n.Refueling as Refueling,	n.Relocation as Relocation,	n.Road_Repair as Road_Repair,	n.Safety as Safety,	n.Safety_Talk as Safety_Talk,	n.Shift_Change as Shift_Change,	n.Slippery as Slippery,	n.Wait_Hauler_Or_Truck as Wait_Hauler_or_Truck, 
+        	n.Rain as Rain,	n.Refueling as Refueling,	n.Relocation as Relocation,	n.Road_Repair as Road_Repair,	n.Safety as Safety,	n.Safety_Talk as Safety_Talk,	n.Shift_Change as Shift_Change,	n.Slippery as Slippery,	n.Wait_Hauler_Or_Truck as Wait_Hauler_Or_Truck, 
             	n.Wait_Operator_EXC as Wait_Operator_EXC, n.Wait_Support as Wait_Support
                 """
 
@@ -82,7 +82,7 @@ q8 = """
 match (n:Multiple_OB) return n.date as date,	n.Bad_Visibility as Bad_Visibility,	n.Blasting as Blasting,	n.Customer_Problem as Customer_Problem,	n.Equipment_Travel as Equipment_Travel,	n.External_Issues as External_Issues, 
 	n.Fasting as Fasting,	n.Friday_Praying as Friday_Praying,	n.Front_And_Disposal_Repair as Front_And_Disposal_Repair,	n.Hazard as Hazard,	n.Holiday as Holiday,	n.Internal_Problem as Internal_Problem, 
     	n.Meal_And_Rest as Meal_And_Rest,	n.No_Hauler_Or_Truck as No_Hauler_Or_Truck,	n.No_Material as No_Material,	n.No_Operator_EXC as No_Operator_EXC, 	n.No_Work_Location as No_Work_Location, n.Praying as Praying, 
-        	n.Rain as Rain,	n.Refueling as Refueling,	n.Relocation as Relocation,	n.Road_Repair as Road_Repair,	n.Safety as Safety,	n.Safety_Talk as Safety_Talk,	n.Shift_Change as Shift_Change,	n.Slippery as Slippery,	n.Wait_Hauler_or_Truck as Wait_Hauler_Or_Truck, 
+        	n.Rain as Rain,	n.Refueling as Refueling,	n.Relocation as Relocation,	n.Road_Repair as Road_Repair,	n.Safety as Safety,	n.Safety_Talk as Safety_Talk,	n.Shift_Change as Shift_Change,	n.Slippery as Slippery,	n.Wait_Hauler_or_Truck as Wait_Hauler_or_Truck, 
             	n.Wait_Operator_EXC as Wait_Operator_EXC, n.Wait_Support as Wait_Support
                 """
 
