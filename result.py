@@ -496,3 +496,7 @@ elif sublead == 'Sublead Tidak Signifikan':
 
     # with containers:
     st.plotly_chart(figg, use_container_width=True)
+
+# add some print
+print('hi')
+print('hello')
