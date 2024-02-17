@@ -499,4 +499,3 @@ elif sublead == 'Sublead Tidak Signifikan':
 
 # add some print
 print('hi')
-print('hello')
